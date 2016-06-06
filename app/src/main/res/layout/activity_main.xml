@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context="com.lovecalculator.prem.lovecalculator.MainActivity"
+    android:background="#f9b5dd">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/index_header"
+        android:scaleType="centerCrop"
+        android:background="@drawable/lovecal_header"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/self_radioGroup"
+        android:layout_alignEnd="@+id/self_radioGroup" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="@string/Name_Str"
+        android:ems="10"
+        android:layout_marginTop="35dp"
+        android:id="@+id/self_editText"
+        android:layout_below="@+id/index_header"
+        android:layout_alignLeft="@+id/index_header"
+        android:layout_alignStart="@+id/index_header"
+        android:textColor="@color/abc_input_method_navigation_guard" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Your Partner's Name"
+        android:ems="10"
+        android:id="@+id/partner_editText"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/self_editText"
+        android:layout_alignLeft="@+id/self_editText"
+        android:layout_alignStart="@+id/self_editText"
+        android:textColor="@color/abc_input_method_navigation_guard" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate"
+        android:id="@+id/button1"
+        android:ems="7"
+        android:layout_below="@+id/partner_editText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:requiresFadingEdge="horizontal"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_design" />
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+        android:layout_above="@+id/partner_editText"
+        android:layout_toRightOf="@+id/button1"
+        android:layout_toEndOf="@+id/button1"
+        android:id="@+id/self_radioGroup">
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="M"
+        android:textSize="40sp"
+        android:id="@+id/self_radioButtonM"
+        android:checked="false"
+        android:button="@null"
+        android:onClick="onRadioButtonClicked"
+        android:textColor="#d41a1d" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="F"
+        android:textSize="40sp"
+        android:id="@+id/self_radioButtonF"
+        android:layout_marginLeft="30dp"
+        android:checked="false"
+        android:button="@null"
+        android:onClick="onRadioButtonClicked"
+        android:textColor="#d41a1d" />
+    </RadioGroup>
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+    android:layout_above="@+id/button1"
+    android:layout_alignLeft="@+id/self_radioGroup"
+    android:layout_alignStart="@+id/self_radioGroup"
+        android:id="@+id/partner_radioGroup">
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="M"
+        android:textSize="40sp"
+        android:id="@+id/partner_radioButtonM"
+        android:checked="false"
+        android:button="@null"
+        android:onClick="onRadioButtonClicked"
+        android:textColor="#d41a1d" />
+
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="F"
+        android:textSize="40sp"
+        android:id="@+id/partner_radioButtonF"
+        android:layout_marginLeft="30dp"
+        android:checked="false"
+        android:button="@null"
+        android:onClick="onRadioButtonClicked"
+        android:textColor="#d41a1d" />
+    </RadioGroup>
+
+</RelativeLayout>
