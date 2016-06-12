@@ -9,7 +9,7 @@
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="180dp"
         android:id="@+id/index_header"
         android:scaleType="centerCrop"
         android:background="@drawable/lovecal_header"
@@ -73,7 +73,8 @@
         android:checked="false"
         android:button="@null"
         android:onClick="onRadioButtonClicked"
-        android:textColor="#d41a1d" />
+        android:textColor="#d41a1d"
+        android:layout_marginLeft="5dp" />
 
     <RadioButton
         android:layout_width="wrap_content"
@@ -105,7 +106,8 @@
         android:checked="false"
         android:button="@null"
         android:onClick="onRadioButtonClicked"
-        android:textColor="#d41a1d" />
+        android:textColor="#d41a1d"
+        android:layout_marginLeft="5dp" />
 
     <RadioButton
         android:layout_width="wrap_content"

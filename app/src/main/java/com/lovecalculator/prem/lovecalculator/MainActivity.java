@@ -6,6 +6,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -37,7 +39,8 @@ public class MainActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.tween);
+                b.startAnimation(anim);
             }
         });
     }
@@ -45,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
+
+        Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.tween2);
 
         // Check which radio button was clicked
         switch(view.getId()) {
@@ -54,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                     selfF.setTypeface(Typeface.DEFAULT);
                     selfM.setTextColor(Color.parseColor("#26c076"));
                     selfF.setTextColor(Color.parseColor("#d41a1d"));
+                    selfM.startAnimation(anim);
                     break;
                 }
             case R.id.self_radioButtonF:
@@ -62,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     selfF.setTypeface(Typeface.DEFAULT_BOLD);
                     selfM.setTextColor(Color.parseColor("#d41a1d"));
                     selfF.setTextColor(Color.parseColor("#26c076"));
+                    selfF.startAnimation(anim);
                     break;
                 }
             case R.id.partner_radioButtonM:
@@ -70,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                     partnerF.setTypeface(Typeface.DEFAULT);
                     partnerM.setTextColor(Color.parseColor("#26c076"));
                     partnerF.setTextColor(Color.parseColor("#d41a1d"));
+                    partnerM.startAnimation(anim);
                     break;
                 }
             case R.id.partner_radioButtonF:
@@ -78,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     partnerF.setTypeface(Typeface.DEFAULT_BOLD);
                     partnerM.setTextColor(Color.parseColor("#d41a1d"));
                     partnerF.setTextColor(Color.parseColor("#26c076"));
+                    partnerF.startAnimation(anim);
                     break;
                 }
         }
