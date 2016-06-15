@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    tools:context="com.lovecalculator.prem.lovecalculator.MainActivity"
-    android:background="#f9b5dd">
+    android:background="#f9b5dd"
+    tools:context=".MainActivity">
 
     <ImageView
         android:layout_width="match_parent"

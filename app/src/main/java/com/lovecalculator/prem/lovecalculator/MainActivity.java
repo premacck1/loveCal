@@ -5,12 +5,17 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -36,11 +41,25 @@ public class MainActivity extends AppCompatActivity {
         partnerF = (RadioButton) findViewById(R.id.partner_radioButtonF);
         b = (Button) findViewById(R.id.button1);
 
+        b.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.tween);
+                b.startAnimation(anim);
+                return false;
+            }
+        });
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.tween);
                 b.startAnimation(anim);
+                String self = self_edit.getText().toString();
+                String partner = partner_edit.getText().toString();
+                String lovePer = getLovePercentInteger(self,partner);
+                Intent in = new Intent(MainActivity.this, ResultPage.class);
+                in.putExtra("love",lovePer);
+                startActivity(in);
             }
         });
     }
@@ -90,5 +109,42 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
         }
+    }
+
+    public String getLovePercentInteger(String self, String partner){
+        ArrayList<Integer> intArr = new ArrayList<>();
+        ArrayList<Integer> intArrNew = new ArrayList<>();
+
+        String[] loveArr = {"l","o","v","e","s"};
+        for (String str : loveArr) {
+            int count_1 = StringUtils.countMatches(self, str);
+            int count_2 = StringUtils.countMatches(partner, str);
+            int totalCount = count_1 + count_2;
+            intArr.add(totalCount);
+        }
+
+        for (int i=0; i<intArr.size()-1;i++){
+            intArrNew.add(i,(intArr.get(i)+intArr.get(i+1)));
+        }
+        intArr.clear();
+        for (int i=0; i<intArrNew.size()-1;i++){
+            intArr.add(i,intArrNew.get(i)+intArrNew.get(i+1));
+        }
+        intArrNew.clear();
+        for (int i=0; i<intArr.size()-1;i++){
+            int a = intArr.get(i)+intArr.get(i+1);
+            if(a>9){
+                int sum = a%10;
+                sum = sum+(a/10);
+                a= sum;
+            }
+            intArrNew.add(i,a);
+        }
+        //CHeck if greater than or equal to 10
+        String totalPerc = intArrNew.get(0).toString()+intArrNew.get(1).toString();
+        if(Integer.parseInt(totalPerc)<=40){
+            totalPerc = String.valueOf(Integer.parseInt(totalPerc) + 30);
+        }
+        return totalPerc;
     }
 }

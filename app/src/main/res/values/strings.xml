@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Love Calculator</string>
     <string name="Name_Str">Enter You Name</string>
-    <string name="title_activity_result_page">ResultPage</string>
+    <string name="title_activity_result_page">Love Results</string>
 </resources>
