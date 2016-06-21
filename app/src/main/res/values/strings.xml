@@ -2,4 +2,11 @@
     <string name="app_name">Love Calculator</string>
     <string name="Name_Str">Enter You Name</string>
     <string name="title_activity_result_page">Love Results</string>
+    <string name="info">App Info</string>
+    <string name="Info_text">Love calculator is based on a special algorithm. Once two names are entered, this calculator matches both names against particular love, romance and relationship related parameters. The love calculator algorithm then detects how many parameters you both have in common. It is based on this analysis, the calculator reaches the conclusion and displays love percentage or compatibility accordingly.</string>
+    <string name="info_heading">About</string>
+    <string name="credit1">Prem Bros</string>
+    <string name="credit">Powered by:</string>
+    <string name="email">premankur19@gmail.com</string>
+
 </resources>

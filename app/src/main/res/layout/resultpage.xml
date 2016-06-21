@@ -6,65 +6,93 @@
     android:layout_height="match_parent"
     tools:context="com.lovecalculator.prem.lovecalculator.ResultPage"
     android:background="#f9b5dd"
-    android:theme="@style/AppTheme">
+    android:theme="@style/AppTheme"
+    android:id="@+id/relative1">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.PopupOverlay">
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/heart"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="220dp" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/imageViewNew"
+        android:src="@drawable/heart"
+        android:visibility="gone"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp" />
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay"/>
-    </android.support.design.widget.AppBarLayout>
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true">
 
-<include layout="@layout/layout_cell" android:id="@+id/circle"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_centerVertical="true"
-    android:layout_centerHorizontal="true"
-    />
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="48dp"
+            android:layout_marginRight="35dp"
+            android:layout_marginTop="35dp"
+            android:text="Share"
+            android:background="@drawable/button_design"
+            android:id="@+id/button"
+            android:layout_below="@+id/circle"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentLeft="false"
+            android:layout_centerInParent="true"
+            android:textColor="#ffffff" />
 
-<TextView
-    android:id="@+id/resultText"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_alignParentTop="true"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="70dp"
-    android:text="Love Percentage"
-    android:textStyle="bold"
-    android:textColor="#08b5df"
-    android:textSize="35sp"
-    android:textAppearance="?android:attr/textAppearanceLarge" />
+        <include layout="@layout/layout_cell" android:id="@+id/circle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/resultText" />
 
-    <Button
-        android:layout_width="110dp"
-        android:layout_height="48dp"
-        android:layout_marginRight="35dp"
-        android:layout_marginTop="35dp"
-        android:background="@drawable/share"
-        android:id="@+id/button"
-        android:layout_below="@+id/circle"
-        android:layout_alignParentRight="false"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentLeft="false"
-        android:layout_centerInParent="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_marginTop="-8dp"
+            android:text="Share With Loved Ones"
+            android:id="@+id/textView"
+            android:layout_below="@+id/circle"
+            android:layout_centerHorizontal="true"
+            android:textSize="25sp"
+            android:textColor="#009688" />
 
-    <TextView
+        <TextView
+        android:id="@+id/resultText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Share With Loved Ones"
-        android:id="@+id/textView"
-        android:layout_below="@+id/circle"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:textSize="25sp"
-        android:textColor="#009688" />
+            android:text="Love Percentage"
+        android:textStyle="bold"
+        android:textColor="#08b5df"
+        android:textSize="35sp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_marginTop="25dp" />
 
+       <!-- <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.PopupOverlay"
+            android:id="@+id/view">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+        </android.support.design.widget.AppBarLayout>-->
+    </RelativeLayout>
 
 </RelativeLayout>

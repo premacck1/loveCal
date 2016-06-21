@@ -1,10 +1,15 @@
 package com.lovecalculator.prem.lovecalculator;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -12,6 +17,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.uncopt.android.widget.text.justify.JustifiedTextView;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -20,13 +29,14 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText self_edit;
-    EditText partner_edit;
-    RadioButton selfM;
-    RadioButton selfF;
-    RadioButton partnerM;
-    RadioButton partnerF;
-    Button b;
+    private EditText self_edit;
+    private EditText partner_edit;
+    private RadioButton selfM;
+    private RadioButton selfF;
+    private RadioButton partnerM;
+    private RadioButton partnerF;
+    private Button b;
+    private boolean doubleBackToExitPressedOnce;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,14 +62,18 @@ public class MainActivity extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.tween);
-                b.startAnimation(anim);
                 String self = self_edit.getText().toString();
                 String partner = partner_edit.getText().toString();
+                if(checkSecurity(self,partner,selfM.isChecked(),selfF.isChecked(),partnerF.isChecked(),partnerM.isChecked()))
+                {
+                Animation anim = AnimationUtils.loadAnimation(MainActivity.this, R.anim.tween);
                 String lovePer = getLovePercentInteger(self,partner);
                 Intent in = new Intent(MainActivity.this, ResultPage.class);
                 in.putExtra("love",lovePer);
+                in.putExtra("self",self);
+                in.putExtra("partner",partner);
                 startActivity(in);
+                }
             }
         });
     }
@@ -79,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                     selfM.setTextColor(Color.parseColor("#26c076"));
                     selfF.setTextColor(Color.parseColor("#d41a1d"));
                     selfM.startAnimation(anim);
+
                     break;
                 }
             case R.id.self_radioButtonF:
@@ -146,5 +161,80 @@ public class MainActivity extends AppCompatActivity {
             totalPerc = String.valueOf(Integer.parseInt(totalPerc) + 30);
         }
         return totalPerc;
+    }
+
+    public Boolean checkSecurity(String s, String p, Boolean s_m, Boolean s_f, Boolean p_m, Boolean p_f){
+        if (s.isEmpty() || p.isEmpty()){
+
+            Toast.makeText(this,"Please write your full name and Patner's name.",Toast.LENGTH_LONG).show();
+            return false;
+        }
+        if(!(s_m||s_f)){
+            Toast.makeText(this,"Please select gender.",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if(!(p_m||p_f)){
+            Toast.makeText(this,"Please select gender.",Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_result, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.info_butt) {
+            Dialog d = new Dialog(this);
+            d.setContentView(R.layout.about_us);
+            d.setTitle(R.string.info_heading);
+            d.show();
+            JustifiedTextView aboutText = (JustifiedTextView) d.findViewById(R.id.aboutDetailsText);
+            aboutText.setText(R.string.Info_text);
+            TextView premBros = (TextView) d.findViewById(R.id.creditName1);
+            premBros.setTextColor(Color.BLUE);
+            premBros.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent emailIntent = new Intent(Intent.ACTION_SEND);
+                    emailIntent.setType("text/email");
+                    emailIntent.putExtra(Intent.EXTRA_EMAIL, R.string.email);
+                    startActivity(Intent.createChooser(emailIntent, "Send email"));
+                }
+            });
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
     }
 }

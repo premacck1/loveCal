@@ -13,5 +13,7 @@ android:gravity="center">
     android:textColor="#FF0FC9F6"
     app:progressColor="#BBD452"
     app:incompleteProgressColor="#D4D4D4"
-    app:strokeWidth="18dp"/>
+    app:strokeWidth="18dp"
+    android:outlineProvider="bounds"
+    android:textAlignment="center" />
 </LinearLayout>

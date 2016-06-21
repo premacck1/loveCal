@@ -148,7 +148,7 @@ public class ProgressCircle extends View {
                 ProgressCircle.this.invalidate();
             }
         });
-        anim.setDuration(2000);
+        anim.setDuration(2400);
         anim.setInterpolator(new AccelerateDecelerateInterpolator());
         anim.start();
 
